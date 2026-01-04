@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductGrid from "../components/ProductGrid";
 import "../styles/ProductsPage.css";
 import { useAtom, useAtomValue } from "jotai";
 import { atomProducts, atomSearch } from "../data/atoms";
+import api from "../utils/axios";
 
 function ProductsPage() {
   const search = useAtomValue(atomSearch);

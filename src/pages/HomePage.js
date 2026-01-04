@@ -12,7 +12,7 @@ import { atomProducts } from "../data/atoms";
 import api from "../utils/axios";
 
 function HomePage() {
-  const [prodcuts, setProducts] = useAtom(atomProducts);
+  const [products, setProducts] = useAtom(atomProducts);
   const [loadingProducts, setLoadingProducts] = useState(false);
   useEffect(() => {
     const getProducts = async () => {
@@ -21,12 +21,12 @@ function HomePage() {
       setProducts(result.data);
       setLoadingProducts(false);
     };
-    getProducts();
+    if(products.length === 0) getProducts();
   }, [setProducts]);
 
   const [category, setCategory] = useState("");
 
-  const filteredItems = prodcuts.filter((item) => item.category === category);
+  const filteredItems = products.filter((item) => item.category === category);
 
   return (
     <main className="page">

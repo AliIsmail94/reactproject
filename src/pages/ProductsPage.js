@@ -7,11 +7,12 @@ import api from "../utils/axios";
 
 function ProductsPage() {
   const search = useAtomValue(atomSearch);
+  
+  const [products, setProducts] = useAtom(atomProducts);
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLocaleLowerCase())
   );
   
-  const [products, setProducts] = useAtom(atomProducts);
   const [loadingProducts, setLoadingProducts] = useState(false);
   useEffect(() => {
     const getProducts = async () => {
@@ -31,7 +32,8 @@ function ProductsPage() {
             Hand-picked components for serious gamers and creators.
           </p>
         </div>
-        <ProductGrid items={filteredProducts} />
+        {loadingProducts? <>LOADING...</>:<ProductGrid items={filteredProducts} /> }
+        
       </section>
     </main>
   );

@@ -7,13 +7,16 @@ import pc1 from "../assets/pc4.webp";
 import pc2 from "../assets/pc2.jpg";
 import pc3 from "../assets/pc3.jpg";
 import ProductGrid from "../components/ProductGrid";
-import { useAtom } from "jotai";
-import { atomProducts } from "../data/atoms";
+import { useAtom, useAtomValue } from "jotai";
+import { atomProducts, atomUser } from "../data/atoms";
 import api from "../utils/axios";
+import { useCartActions } from "../utils/useCartActions";
 
 function HomePage() {
   const [products, setProducts] = useAtom(atomProducts);
+  const user = useAtomValue(atomUser);
   const [loadingProducts, setLoadingProducts] = useState(false);
+  const {fetchUserCart} = useCartActions()
   useEffect(() => {
     const getProducts = async () => {
       setLoadingProducts(true);
@@ -22,7 +25,12 @@ function HomePage() {
       setLoadingProducts(false);
     };
     if(products.length === 0) getProducts();
-  }, [setProducts]);
+    if(user.id){
+  
+      fetchUserCart()
+    }
+  }, [setProducts, products.length]);
+
 
   const [category, setCategory] = useState("");
 

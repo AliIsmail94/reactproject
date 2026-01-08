@@ -3,6 +3,7 @@ import { useSetAtom } from "jotai";
 import { atomUser } from "../data/atoms";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/axios";
+import {useCartActions} from "../utils/useCartActions.js"
 
 export default function Auth() {
   const setUser = useSetAtom(atomUser);
@@ -12,7 +13,10 @@ export default function Auth() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+
   const navigate = useNavigate();
+  
+  const {fetchUserCart} = useCartActions()
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +32,7 @@ export default function Auth() {
         ...data.user,
       });
       if (data.user?.id) {
+        fetchUserCart();
         navigate("/");
       }
     } catch (err) {

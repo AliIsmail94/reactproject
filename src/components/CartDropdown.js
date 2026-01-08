@@ -43,7 +43,9 @@ export default function CartDropdown({ open }) {
       ) : (
         <>
           <div className="cart-list">
-            {items.map((item, index) => (
+            {items.map((item, index) => {
+              console.log("cartItem", item);
+              return (
               <div
                 key={`${item.id ?? item.name}-${index}`}
                 className="cart-row"
@@ -58,12 +60,13 @@ export default function CartDropdown({ open }) {
                 <button
                   type="button"
                   className="cart-remove"
-                  onClick={() => removeFromCart(index)}
+                  onClick={() => removeFromCart(item.cart_id)}
                 >
                   Remove
                 </button>
               </div>
-            ))}
+            )
+            })}
           </div>
 
           <div className="cart-footer">

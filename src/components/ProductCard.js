@@ -9,7 +9,7 @@ function ProductCard({ product }) {
         <div style={{ display: "flex", marginBottom: "10px", gap: "10px" }}>
           <div className="item-img-box">
             <img
-              src={`https://reactprojectbackend-production-dbb1.up.railway.app/uploads/${product.image}`}
+              src={`https://reactprojectbackend-production-f1e8.up.railway.app/uploads/${product.image}`}
               alt={product.name}
               className="item-img"
             />

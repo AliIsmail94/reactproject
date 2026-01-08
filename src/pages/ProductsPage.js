@@ -22,7 +22,7 @@ function ProductsPage() {
       setLoadingProducts(false);
     };
     if(products.length === 0) getProducts();
-  }, [setProducts]);
+  }, [setProducts, products.length]);
   return (
     <main className="page">
       <section className="section">
